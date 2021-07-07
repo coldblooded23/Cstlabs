@@ -1,0 +1,127 @@
+
+
+
+	
+
+
+
+<!DOCTYPE html>
+<html  lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="common/header :: commonheader">
+
+
+</head>
+<style type="text/css">
+
+
+#content {
+	display: none;
+};
+
+.IdPlay{
+display:block;
+ position:center;
+
+}
+</style>
+
+<body >
+<nav th:replace="common/header :: commonsidenav">...</nav>
+
+
+
+  <div class="main-content">
+    <!-- Navbar -->
+ <div th:insert="common/header :: bodynav(~{ :: #breadcrumb})">
+ 
+         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#"><span id="breadcrumb" ></span></a>
+  
+</div>
+    <div class="header bg-gradient-primary pb-6  ">
+      
+   
+</div>
+
+
+<div class="container mt-10">
+
+
+		<div th:if="${resultInfo.result == 'fail'}" >
+			<div class="resultsDisplay" >
+
+				<h1 th:text=" ${resultInfo.result}"></h1>
+				<div class="displayMarks">
+
+					<div class="alert alert-success" id="correctMarks">
+						<h3 th:text="${resultInfo.correct}"></h3>
+						<h4>Correct</h4>
+					</div>
+					<div th:if="${resultInfo.unAnswered != 0}" class="alert alert-warning" id="correctMarks">
+						<h3 th:text="${resultInfo.unAnswered}"></h3>
+						<h4>UnAnswered</h4>
+					</div>
+					<div class="alert alert-danger" id="wrongMarks">
+						<h3 th:text="${resultInfo.incorrect}"></h3>
+						<h4>In Correct</h4>
+					</div>
+
+				</div>
+				<h4>Retry the Exam <br><br><a href="" th:href="@{'/coursee/'+${resultInfo.courseId} }"><button
+							type="button" class="btn btn-success">Retry</button></a></h4>
+			
+			</div>
+
+
+		</div>
+
+
+	<div th:if="${resultInfo.result == 'pass'}" >
+			<div class="resultsDisplay" >
+
+				<h1 th:text=" ${resultInfo.result}"></h1>
+				<div class="displayMarks">
+
+					<div class="alert alert-success" id="correctMarks">
+						<h3 th:text="${resultInfo.correct}"></h3>
+						<h4>Correct</h4>
+					</div>
+					<div th:if="${resultInfo.unAnswered != 0}" class="alert alert-warning" id="correctMarks">
+						<h3 th:text="${resultInfo.unAnswered}"></h3>
+						<h4>UnAnswered</h4>
+					</div>
+					<div class="alert alert-danger" id="wrongMarks">
+						<h3 th:text="${resultInfo.incorrect}"></h3>
+						<h4>In Correct</h4>
+					</div>
+
+				</div>
+				<h4>click the Button view the certificate</h4>
+				<p>
+					 <a href="" th:href="@{'/Certificate/'+${resultInfo.courseId}}"><button
+							type="button" class="btn btn-success">certificate</button></a>
+				</p>
+			</div>
+
+
+		</div>
+
+
+	</div>
+	
+
+	
+	
+	
+   		
+      
+      
+
+  <!--   Core   -->
+<div th:replace="common/header :: commonscript">...</div>
+</div>
+
+</body>
+
+</html>

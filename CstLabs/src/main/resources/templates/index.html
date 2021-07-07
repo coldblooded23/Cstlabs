@@ -1,0 +1,93 @@
+
+
+<!DOCTYPE html>
+<html  lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="common/header :: commonheader">
+
+
+</head>
+
+<style>
+.container {
+	width: 1200px;
+	padding: 40px;
+	background-color: azure;
+}
+
+.aggrement {
+border-style: groove;
+padding: 20px;
+background-color: white;
+}
+
+#myScrollspy{
+	
+overflow-y: scroll;
+	height: 550px;
+}
+.page {
+	border-style: solid;
+	font-style: oblique;
+	padding: 20px;
+}
+
+</style>
+<body >
+<nav th:replace="common/header :: commonsidenav">...</nav>
+
+
+
+  <div class="main-content">
+    <!-- Navbar -->
+ <div th:insert="common/header :: bodynav(~{ :: #breadcrumb})">
+ 
+         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/"><span id="breadcrumb" ></span></a>
+  
+</div>
+    <div class="header bg-gradient-primary pb-6 ">
+
+    </div>
+      
+    <div class= "container-fluid ">
+    <div class= "row">
+
+      <div class="col ">
+    <div class="container-fluid mt-7">
+      <div class="row justify-content-center">
+        <div class="col">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent text-center ">
+              <div class="btn-wrapper text-center mt-2">
+          
+                <img alt="" src="/images/cstech.png" style="max-height: 400px; max-width: 600px">
+              </div><br>
+               <!--   <h1 class="text" style="font-family: 'sans-serif', Italic; font-size: 60px;">Welcome to CstLabs</h1>-->
+          <p></p>
+          </div>
+         
+          
+         
+          </div>
+     
+        </div>
+      </div>
+    </div>
+    
+  
+    
+     
+    </div>
+    </div>
+    </div>
+      
+      
+
+  <!--   Core   -->
+<div th:replace="common/header :: commonscript">...</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+
+
+
+<!DOCTYPE html>
+<html  lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/video.css}">
+<head th:replace="common/header :: commonheader">
+
+
+</head>
+<style type="text/css">
+#cancleEdit{
+display: block;
+}
+#EditUser{
+display: none;
+}
+</style>
+<script type="text/javascript">
+
+function EditUserclick(){
+	const edituser=document.getElementById("EditUser");
+	const cancleEdit=document.getElementById("cancleEdit");
+	edituser.style.display='block';
+	cancleEdit.style.display='none';	
+}
+
+function cancelEditUser(){
+	const edituser=document.getElementById("EditUser");
+	const cancleEdit=document.getElementById("cancleEdit");
+	edituser.style.display='none';
+	cancleEdit.style.display='block';	
+}
+
+</script>
+
+<body >
+<nav th:replace="common/header :: commonsidenav">...</nav>
+
+
+
+  <div class="main-content">
+    <!-- Navbar -->
+ <div th:insert="common/header :: bodynav(~{ :: #breadcrumb})">
+ 
+         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#"><span id="breadcrumb" ></span></a>
+  
+</div>
+    <div class="header bg-gradient-primary pb-6  ">
+      
+    </div>
+    
+    <!-- Page content -->
+    <div class="container-fluid mt-7">
+	<div class="alert alert-success" role="alert" th:if="${success  == 'user'}"> Profile Updated Successfully</div>
+					
+ 
+        <div class="col order-xl-1">
+        <div class="cancleEdit" id="cancleEdit">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My Profile</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <button  class="btn btn-sm btn-primary" onclick="EditUserclick()">Edit</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form  method="post">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">First name</label>
+                        <input type="text"  class="form-control form-control-alternative" th:value="${userDetail.firstName}" readonly>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Last name</label>
+                        <input type="text"  class="form-control form-control-alternative"  th:value="${userDetail.lastName}" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Phone</label>
+                        <input type="text"  class="form-control form-control-alternative"  th:value="${userDetail.phone}" readonly>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input type="email" class="form-control form-control-alternative" th:value="${userDetail.emailId}" readonly="readonly">
+                      </div>
+                    </div>
+                  </div>
+              
+                </div>
+                <hr class="my-4" />
+              </form>
+            </div>
+          </div>
+          </div>
+              <div class="EditUser" id="EditUser">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My Profile</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <button class="btn btn-sm btn-danger" onclick="cancelEditUser()">Cancel</button>
+                </div>
+              </div>
+            </div>
+          
+            <div class="card-body">
+              <form id="form" th:action="@{/profile}" th:object="${userr}" method="post">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">First name</label>
+                        <input type="text" id="firstName" name="firstName" onkeypress = "return((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 39))"  maxlength="50" class="form-control form-control-alternative" th:value="${userDetail.firstName}" >
+                                          <div class="firstNameerrors" id="firstNameerrors" style="display: none;color:red">
+                 First Name is required
+                  </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Last name</label>
+                        <input type="text" id="lastName" name="lastName" onkeypress = "return((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 39))" maxlength="50" class="form-control form-control-alternative"  th:value="${userDetail.lastName}" >
+                     
+                                        <div class="lastNameerrors" id="lastNameerrors" style="display: none;color:red">
+                 Last Name is required
+                  </div>
+                   </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Phone</label>
+                        <input type="text" id="phone"  name="phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control form-control-alternative"  th:value="${userDetail.phone}" >
+                      
+                       <div  style="color: red;" id="error"></div>
+                </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input type="email" id="emailId" name="emailId" class="form-control form-control-alternative" th:value="${userDetail.emailId}" readonly="readonly">
+                      </div>
+                    </div>
+                  </div>
+              
+                </div>
+                <hr class="my-4" />
+                <div class="col">
+                <div style="margin-left:50%">
+                <input type="submit" class="btn btn-success mt-2" value="Update" >
+                </div>
+                </div>
+              </form>
+              <script type="text/javascript">
+              const from =document.getElementById("form");
+              const firstName =document.getElementById("firstName");
+              const lastName =document.getElementById("lastName");
+              const phone =document.getElementById("phone");
+              const errorElement =document.getElementById("error");
+              
+              from.addEventListener('submit',(e)=>{
+            	  
+            	  let meassage=[];
+            	  if(firstName.value===''||firstName.value==null){
+            		  meassage.push('FirstName is required');
+            		  document.getElementById("firstNameerrors").style.display='block'; 
+            	  }else{
+            		  document.getElementById("firstNameerrors").style.display='none'; 
+            	  }
+            	  
+            	  if(lastName.value===''||lastName.value==null){
+            		  meassage.push('LastName is required');
+            		  document.getElementById("lastNameerrors").style.display='block'; 
+            	  }else{
+            		  document.getElementById("lastNameerrors").style.display='none'; 
+            	  }
+            	  
+            	  console.log('logggg '+phone.value.length);
+            	  if(phone.value===''||phone.value==null){
+            		  meassage.push('Please Enter Phone Number');
+            		  errorElement.innerText='Please Enter Phone Number';
+            	  }else if(phone.value.length<10){
+            		  meassage.push('enter valid number');
+            		  errorElement.innerText='Enter valid Phone number'
+            	  }else{
+            		  errorElement.innerText=''  
+            	  }
+            	  if(meassage.length>0){
+            	  e.preventDefault()
+            	  }
+              })
+              
+              
+              
+              
+               $(function() {
+        $('#firstName').on('keypress', function(e) {
+            if (e.which == 32){
+                return false;
+            }
+        });
+});
+              
+              $(function() {
+                  $('#lastName').on('keypress', function(e) {
+                      if (e.which == 32){
+                          return false;
+                      }
+                  });
+          });
+              </script>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+  <!--   Core   -->
+<div th:replace="common/header :: commonscript">...</div>
+    </div>
+  
+
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="common/header :: commonheader">
+</head>
+<body>
+	<nav th:replace="common/header :: commonsidenav">...</nav>
+
+
+	<div class="main-content">
+		<!-- Navbar -->
+		<div th:insert="common/header :: bodynav(~{ :: #breadcrumb})">
+
+			<a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+				href="#"><span id="breadcrumb"></span></a>
+
+		</div>
+		<div class="header bg-gradient-primary pb-6  "></div>
+
+
+
+		<div class="UnCompleated mt-5">
+
+
+			<div class="container-fluid">
+				<div class="finished"
+					style="width: 100%; justify-content: center; text-align: center; ">
+
+					<h1>Incomplete Courses</h1>
+
+				</div>
+				<div class="header-body mt-5">
+					<!-- Card stats -->
+					<div class="row">
+
+						<div class="col-xl-4 col-lg-6"
+							th:each="incompleate,custStat: ${InCompleatedCourses}">
+							<a   th:href="@{/coursee/{id}(id=${incompleate.courseId})}"><button
+									style="border: none; background-color: transparent;">
+									<div class="card card-stats mb-4 mb-xl-0 ">
+										<div class="card-body bg-gradient-primary">
+											<div class="row">
+												<div class="col">
+												<h5
+														class="card-title h2 font-weight-bold mb-0 text-uppercase "
+														th:text="${incompleate.courseName}">Traffic</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</button></a>
+						</div>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="Compleated mt-5">
+
+
+			<div class="container-fluid">
+				<div class="finished" style="width: 100%; justify-content: center; text-align: center; border-top: groove 10px;">
+
+					<h1>Completed Courses</h1>
+
+				</div>
+				<div class="header-body mt-5">
+					<!-- Card stats -->
+					<div class="row">
+
+						<div class="col-xl-4 col-lg-6"
+							th:each="compleated,custStat: ${CompleatedCourses}">
+							<a th:href="@{/Certificate/{id}(id=${compleated.courseId})}">
+								<button style="border: none; background-color: transparent;">
+									<div class="card card-stats mb-4 mb-xl-0">
+										<div class="card-body  bg-gradient-success">
+											<div class="row">
+												<div class="col" >
+													<h5
+														class="card-title h2 font-weight-bold mb-0 text-uppercase"
+														th:text="${compleated.courseName}">Traffic</h5>
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+								</button>
+							</a>
+						</div>
+
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+		<!--   Core   -->
+		<div th:replace="common/header :: commonscript">...</div>
+	</div>
+
+</body>
+
+</html>

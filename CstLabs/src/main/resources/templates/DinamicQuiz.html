@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html  lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="common/header :: commonheader">
+
+</head>
+<Style>
+
+
+</Style>
+<script type="text/javascript">
+
+function startQuiz(){
+var quizCon =document.getElementById("quizCon");
+var quizQuestions=document.getElementById("questionBox");
+var timer =document.getElementById("timmer");
+var submit=document.getElementById("submited");
+quizCon.style.display='none';
+quizQuestions.style.display='block';
+timer.style.display='block';
+const StartingMin=1;
+let time=StartingMin*60;
+	setInterval(function(){
+	const timeleft=document.querySelector('#time-left');
+const min =Math.floor(time/60);
+let sec =time%60;
+console.log(min+" ffffffffffff"+    sec +time);
+
+if(min==0&&sec==0){
+	submit.click();
+}
+timeleft.innerHTML=`${min}:${sec}`;
+time--;
+},1000);
+};
+
+
+
+
+
+</script>
+
+
+<body >
+<nav th:replace="common/header :: commonsidenav">...</nav>
+
+
+
+  <div class="main-content">
+    <!-- Navbar -->
+ <div th:insert="common/header :: bodynav(~{ :: #breadcrumb})">
+ 
+         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#"><span id="breadcrumb" >Results</span></a>
+  
+</div>
+    <div class="header bg-gradient-primary pb-8  ">
+      
+   
+</div>
+
+
+
+<div class="container" >
+
+	
+	<div class="quizCon" id="quizCon">
+
+						<div class="totalNoQuestion">
+							<H1>
+								Total Number Of Questions 25<br /> Quiz Time Is 25 Min
+							</H1>
+						</div>
+						<div class="startQuiz" style="padding-top: 10px">
+							<center>
+								<button class="btn btn-success" type="button" id="startQuiz"
+									onclick="startQuiz()">StartQuiz</button>
+							</center>
+						</div>
+
+					</div>
+
+
+	</div>
+	<div class="questionBox" id="questionBox">
+	<div class="timmer" id="timmer">
+					<h3 style="float: right; padding-right: 10px; padding-top: 5px;">
+						Time left: <span id="time-left">25</span>
+			</h3>
+	</div>
+
+
+					<form action="/quizSubmit" th:action="@{/quizSubmit}" th:object ="${answers}" method="post">
+					<div th:each="courseinfo,custStat: ${questions}">
+					
+					<input type="hidden" id="courseId" name="courseId" th:value="${questions.courseId}">
+					<input type="hidden" id="courseName" name="courseName" th:value="${questions.courseName}">
+					<input type="hidden" id="courseAnswerCount" name="courseAnswerCount" th:value="${questions.courseAnswerCount}">
+<div class=" container mt-8"> 
+<div class="band" id="band">
+  <table style="width:100%">
+
+    <tr th:each="questionn,custStat: ${questions.questionsInfo}" ><td>
+      <div class="member">
+      <div class= "question">
+        <ul class="list-group">
+		<li class="list-group-item" style="border-bottom:groove;" th:text="${questionn.question}">The Project Elephant was launched in this year</li>
+		</ul>
+		</div>
+		<div class="options">
+		<ul  class="list-group">
+		
+			<li class="list-group-item" th:if= "${questionn.option1 != questionn.answer}"><input type="radio" th:attr="name='opt'+${custStat.count}" th:id="'opt' + ${custStat.count}" value="0"><label id="lables" th:text="${questionn.option1}">A.1991</label></li>
+			<li class="list-group-item" th:if= "${questionn.option1 == questionn.answer}"><input type="radio" th:attr="name='opt'+${custStat.count}" th:id="'opt' + ${custStat.count}" value="1"><label id="lables" th:text="${questionn.option1}">A.1991</label></li>
+		
+			<li class="list-group-item" th:if= "${questionn.option2 != questionn.answer}"><input type="radio" th:attr="name='opt'+${custStat.count}" th:id="'opt' + ${custStat.count}" value="0"><label id="lables" th:text="${questionn.option2}">B.1992</label></li>
+			<li class="list-group-item" th:if= "${questionn.option2 == questionn.answer}"><input type="radio" th:attr="name='opt'+${custStat.count}" th:id="'opt' + ${custStat.count}" value="1"><label id="lables" th:text="${questionn.option2}">B.1992</label></li>
+			
+			<li class="list-group-item"  th:if= "${questionn.option3 != questionn.answer}"><input type="radio" th:attr="name='opt'+${custStat.count}" th:id="'opt' + ${custStat.count}" value="0"><label id="lables" th:text="${questionn.option3}">C.1994</label></li>
+			<li class="list-group-item" th:if= "${questionn.option3 == questionn.answer}"><input type="radio" th:attr="name='opt'+${custStat.count}" th:id="'opt' + ${custStat.count}" value="1"><label id="lables" th:text="${questionn.option3}">C.1994</label></li>
+			
+			<li class="list-group-item" th:if= "${questionn.option4 != questionn.answer}"><input type="radio" th:attr="name='opt'+${custStat.count}" th:id="'opt' + ${custStat.count}" value="0"><label id="lables" th:text="${questionn.option4}">D.1987</label></li>
+    		<li class="list-group-item" th:if= "${questionn.option4 == questionn.answer}"><input type="radio" th:attr="name='opt'+${custStat.count}" th:id="'opt' + ${custStat.count}" value="1"><label id="lables" th:text="${questionn.option4}">D.1987</label></li>
+      </ul></div></div>
+    </td></tr>
+    
+ 
+
+</table>
+</div>	
+</div> 
+  </div> 
+  <center> <button class="btn btn-success" type="submit" id="submited" >Submit</button></center> 		
+</form>
+</div>
+</div>
+      
+      
+
+  <!--   Core   -->
+
+
+
+</body>
+
+</html>

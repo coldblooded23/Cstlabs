@@ -1,0 +1,322 @@
+
+            
+
+<!DOCTYPE html>
+<html  lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+   Internal Certification
+  </title>
+  <link rel="icon" type="image/png" href="/images/favicon.png" >
+  <!-- Fonts -->
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link th:href="@{/js/plugins/nucleo/css/nucleo.css}" rel="stylesheet" />
+  <link th:href="@{/js/plugins/@fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link th:href="@{/css/argon-dashboard.css?v=1.1.2}" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <style>
+body, html {
+  height: 100%;
+}
+.bodyBg {
+  /* The image used */
+  background-image: url("/images/loginbg.jpg");
+
+  /* Full height */
+opacity:inherit;
+  /* Center and scale the image nicely */
+  background-origin:content-box;
+  background-position: center;
+  background-repeat:repeat;
+  background-size: cover;
+}
+</style>
+</head>
+
+<body class="bodyBg">
+  <div class="main-content">
+    <!-- Navbar -->
+      <!--  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div class="container px-4">
+        <a class="navbar-brand" href="#">
+          <img src="/images/logo.png" style="height:60px;width:100px">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">
+          <!-- Collapse header -->
+          <!--  <div class="navbar-collapse-header d-md-none">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="#">
+                  <img src="/images/logo.png">
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Navbar items -->
+         <!-- <ul class="navbar-nav ml-auto">
+         
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="/login" th:href="@{/login}">
+                <i class="ni ni-key-25"></i>
+                <span class="nav-link-inner--text">Login</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    
+   
+    <!-- Page content -->
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col"></div>
+    
+    
+    
+    <div class="col">
+    <div class="container mt-2">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent ">
+            <div class="text-muted text-center mt-2 ">
+               <img alt="" src="/images/cstech.png" style="height: 100px; width:300px">
+            </div>
+              <div class="text-muted text-center mt-3 mb-3">
+
+              <h1><b>SIGNUP</b></h1></div>
+                <div class="text-muted text-center">
+                            		<div class="alert alert-danger" role="alert" th:if="${Exests == 'Email already exists'}"> Email Already Exists</div>
+						<div class="alert alert-danger" role="alert" th:if="${pass == 'pass'}"> Password and Confirm password needs to be same </div>
+						
+						<div class="alert alert-success" role="alert" th:if="${success == 'success'}"> Account Created Successfully</div>
+						</div>
+            </div>
+            <div class="card-body ">
+            	<form id="from" class="login100-form validate-form" th:action="@{/signup}" th:object="${user}" method="post">
+                   <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" type="text" name="firstName" onkeypress="return((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 39));" placeholder="FirstName (Required)" maxlength="50" id ="firstName" required="required">
+                  </div>
+                  <!-- return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57)) -->
+                </div>
+                 <p style="color:red" th:each="e : ${#fields.errors('firstName')}" th:text="${e}"></p>
+                    <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" type="text" name="lastName" onkeypress="return((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 39));" placeholder="LastName  (Required)" maxlength="50" id="lastName" required="required">
+                  </div>
+                </div>
+                               <p style="color:red" th:each="e : ${#fields.errors('lastName')}" th:text="${e}"></p>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" type="email" name="emailId" placeholder="Email Id  (Required)" id="emailId" required="required" >
+                  </div>
+                  <div class="errors" id="errors" style="display: none;color:red">
+                  Only Client Server Email's Are Accepted
+                  </div>
+                </div>
+                 <p style="color:red" th:each="e : ${#fields.errors('emailId')}" th:text="${e}"></p>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                    </div>
+                    <input class="form-control" type="text" name="phone" placeholder="Number  (Required)" id="phone" min="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required="required">
+                   
+                  </div>
+                   
+                </div>
+                <p style="color:red" th:each="e : ${#fields.errors('phone')}" th:text="${e}"></p>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" type="password" name="password" placeholder="Password  (Required)" id="password" required="required">
+                     <span class="input-group-text"><i class="far fa-eye" id="togglePassword"></i></span>
+                 <div class="PassLength" id="PassLength" style="display: none;color:red">
+Password must contain Minimum 6 and Maximum 16 characters
+                  </div>
+                  <div class="WrongPass" id="WrongPass" style="display: none;color:red">
+Password should contain atleast one number and one special character
+                  </div>
+                  </div>
+                </div>
+                <p style="color:red" th:each="e : ${#fields.errors('password')}" th:text="${e}"></p>
+                 <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password  (Required)" id="confirmPassword" required="required" >
+                     <span class="input-group-text"><i class="far fa-eye" id="togglePassword1"></i></span>
+                  </div>
+                </div>
+                 <p style="color:red" th:each="e : ${#fields.errors('confirmPassword')}" th:text="${e}"></p>
+                <div class="text-center">
+                  <input type="submit"  class="btn btn-primary mt-4" value="Create account">
+                </div>
+              </form>
+                  <div class="row">
+            <div class="col-6">
+         
+            </div>
+           <div class="col-6 text-right ">
+           <br/>
+           <a href="/login" th:href="@{/login}" class="text-primary"><small><u>Click Here To Sign-In</u></small></a>  
+            </div>
+          </div>
+            </div><!-- a-zA-Z0-9 -->
+                   <script type="text/javascript">
+                   const from =document.getElementById("from");
+                   const email =document.getElementById("emailId");
+                   const pass =document.getElementById("password");
+                   var emailRE1="^[^-,]+@clientservertech.com+$";
+                   var emailRE2="^[^-,]+@clientservertech.ca+$";
+                  from.addEventListener('submit',(e)=>{
+                		  let meassage=[];
+                		
+                		  let email1=emailValidate();
+                		  let pass1=passValidation();
+                		  let minlength=6;
+                		  let maxlength=16;
+                		  console.log("email==="+pass1);
+                	
+                		
+                		  if(pass.value.length< minlength || pass.value.length > maxlength){
+                			  meassage.push("password length"); 
+                			  document.getElementById("PassLength").style.display='block'; 
+                  			
+                		     console.log("password length")
+                		    }else{
+                		    	  document.getElementById("PassLength").style.display='none';                   				
+                		    }
+                		  if(email1==false){
+                			  meassage.push("enter valid email"); 
+                		  }else{  
+                			  document.getElementById("errors").style.display='none'; 
+                		  }       
+                		  if(pass1==false){
+                			  meassage.push("alteast one upper case and one lowercase"); 
+                		  }else{  
+                			  document.getElementById("WrongPass").style.display='none'; 
+                		  }
+                		      
+                		   
+                		  if(meassage.length>0){
+                			  e.preventDefault();
+                		  }
+                		 
+                   })
+                 
+                   
+                   
+                   function emailValidate(){
+                	  
+                	  if(email.value.toLowerCase().match(emailRE1)||email.value.toLowerCase().match(emailRE2)){
+            			  return true;  
+            		  }else{	
+            			  document.getElementById("errors").style.display='block'; 
+            			  return false;
+            		  }
+                	  
+                  }
+                  
+                  function passValidation(){
+                	  var PassregularExpression  =/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+                	  
+                	  if(pass.value.match(PassregularExpression)){
+            			  return true;  
+            		  }else{	
+            			  document.getElementById("WrongPass").style.display='block'; 
+            			  return false;
+            		  }
+                	  
+                  }
+                   
+                  
+                  $(function() {
+                      $('#firstName').on('keypress', function(e) {
+                          if (e.which == 32){
+                              return false;
+                          }
+                      });
+              });
+                            
+                            $(function() {
+                                $('#lastName').on('keypress', function(e) {
+                                    if (e.which == 32){
+                                        return false;
+                                    }
+                                });
+                        });
+                   </script>
+      
+          
+          </div>
+        </div>
+      </div>
+    </div>
+   
+   
+   
+   
+   </div>
+   </div>
+   </div>
+  </div>
+<script type="text/javascript">
+const togglePassword = document.querySelector('#togglePassword');
+const password = document.querySelector('#password');
+
+togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+
+const togglePassword1 = document.querySelector('#togglePassword1');
+const password1 = document.querySelector('#confirmPassword');
+togglePassword1.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password1.getAttribute('type') === 'password' ? 'text' : 'password';
+    password1.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</body>
+
+</html>

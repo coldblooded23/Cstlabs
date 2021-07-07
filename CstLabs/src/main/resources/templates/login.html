@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html  lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+  Internal Certification
+  </title>
+  <link rel="icon" type="image/png" href="/images/favicon.png" >
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link th:href="@{/js/plugins/nucleo/css/nucleo.css}" rel="stylesheet" />
+  <link th:href="@{/js/plugins/@fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link th:href="@{/css/argon-dashboard.css?v=1.1.2}" rel="stylesheet" />
+</head>
+<style>
+body, html {
+  height: 100%;
+}
+.bodyBg {
+  /* The image used */
+  background-image: url("/images/loginbg.jpg");
+
+  /* Full height */
+opacity:inherit;
+  /* Center and scale the image nicely */
+  background-origin:content-box;
+  background-position: center;
+  background-repeat:repeat;
+  background-size: cover;
+}
+</style>
+
+<body class="bodyBg">
+  <div class="main-content">
+    <!-- Navbar -->
+   <!--  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div class="container px-4">
+        <a class="navbar-brand" href="#">
+          <img src="/images/logo.png" style="height:60px;width:100px">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">-->
+          <!-- Collapse header -->
+         <!-- <div class="navbar-collapse-header d-md-none">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="#">
+                  <img src="/images/logo.png">
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>-->
+          <!-- Navbar items -->
+         <!-- <ul class="navbar-nav ml-auto">
+         
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="/signup" th:href="@{/signup}">
+                <i class="ni ni-circle-08"></i>
+                <span class="nav-link-inner--text-black">Register</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>-->
+   <!-- Header -->
+   <!--  <div class="header  pb-7 ">
+  
+   
+    </div>-->
+    <!-- Page content -->
+    <div class= "container-fluid ">
+    <div class= "row">
+    <div class="col mt-7">
+     <div class="container">
+     
+   <!--    <img alt="" src="/images/cstech.png">-->
+     
+     </div></div>
+      <div class="col ">
+    <div class="container mt-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent ">
+              <div class="btn-wrapper text-center mt-2">
+          
+                <img alt="" src="/images/cstech.png" style="height: 100px; width:300px">
+              </div>
+              	<div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                </div>
+              <div class="text-muted text-center mt-3 mb-3">
+             
+              <h1><span class ="btn-inner--icon" style="font-size: 20px;"> <i class="ni ni-key-25  " ></i></span><b> SIGN IN</b></h1></div>
+            </div>
+          
+            
+            <div class="card-body ">
+              <form role="form" th:action="@{/login}" method="post">
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" type="email" name="username" id ="username" placeholder="Username" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                   <input class="form-control" type="password" name="password" id= "password" placeholder="Password" required="required">
+                    <span class="input-group-text">  <i class="far fa-eye" id="togglePassword"></i></span>
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                </div>
+              </form>
+              
+                  <div class="row">
+            <div class="col-6">
+           <!--   <a href="#" class="text-light"><small>Forgot password?</small></a> --> 
+            </div>
+            <div class="col-6 text-right">
+              <a href="/signup" th:href="@{/signup}" class="text-primary"><small><u>Create new account</u></small></a>
+            </div>
+          </div> 
+            </div>
+          </div>
+     
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+    });
+    
+    </script>
+    
+     
+    </div>
+    </div>
+    </div>
+  </div>
+</body>
+
+</html>
