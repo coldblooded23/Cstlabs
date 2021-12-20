@@ -103,7 +103,7 @@
       <uniqueVersion>false</uniqueVersion>
       <id>CstLabs-releases</id>
       <name>CstLabs-releases</name>
-      <url>http://44.201.59.221:8081/repository/CstLabs-releases/</url>
+      <url>http://ec2-3-238-32-61.compute-1.amazonaws.com:8081/repository/CstLabs-releases/</url>
       <layout>default</layout>
 
     </repository>
@@ -111,7 +111,7 @@
       <uniqueVersion>true</uniqueVersion>
       <id>CstLabs-snapshot</id>
       <name>CstLabs-snapshot</name>
-      <url>http://44.201.59.221:8081/repository/CstLabs-snapshot/</url>
+      <url>http://ec2-3-238-32-61.compute-1.amazonaws.com:8081/repository/CstLabs-snapshot/</url>
       <layout>legacy</layout>
     </snapshotRepository>
   </distributionManagement>
